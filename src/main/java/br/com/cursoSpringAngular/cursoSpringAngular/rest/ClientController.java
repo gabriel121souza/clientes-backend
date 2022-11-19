@@ -1,5 +1,7 @@
 package br.com.cursoSpringAngular.cursoSpringAngular.rest;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,7 @@ import br.com.cursoSpringAngular.cursoSpringAngular.model.entities.Client;
 import br.com.cursoSpringAngular.cursoSpringAngular.model.repositories.ClientRepository;
 
 @RestController
-@RequestMapping("/api/clients")
+@RequestMapping("/api/clientes")
 public class ClientController {
 	
 	@Autowired
@@ -32,6 +34,10 @@ public class ClientController {
 		return repository.save(client);
 	}
 	
+	@GetMapping
+	public List<Client> findAll(){
+		return repository.findAll();
+	}
 	@GetMapping("{id}")
 	public Client findById(@PathVariable Long id) {
 		return repository.findById(id)
